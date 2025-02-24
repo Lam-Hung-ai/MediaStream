@@ -34,7 +34,7 @@ With the above libraries, you can run the RTSP protocol.
 
 - For the WHIP and WHEP (WebRTC) protocols, you need to compile [simple-whip-client](https://github.com/meetecho/simple-whip-client.git) and [simple-whep-client](https://github.com/meetecho/simple-whep-client.git).  You can find pre-built binaries [here](./Whip_Whep_application).
 
-### 1.3 Evaluation
+### 1.4 Evaluation
 
 - Media latency from producer to consumer using the RTSP protocol is ~800ms, while using the WHIP and WHEP (WebRTC) protocols it's ~550ms.
 - The commands for producer and consumer below are optimized for IoT devices streaming voice audio.  You can modify the commands according to your needs, referring to the [GStreamer pipeline elements documentation](https://gstreamer.freedesktop.org/documentation/plugins_doc.html#).
@@ -57,7 +57,7 @@ gst-launch-1.0 filesrc location=/home/lamhung/Downloads/mat_ket_noi.mp3 ! decode
 gst-launch-1.0 alsasrc ! audioconvert ! audioresample ! audio/x-raw,format=S16LE,rate=16000,channels=1 ! opusenc audio-type=voice bandwidth=wideband bitrate=16000 bitrate-type=constrained-vbr complexity=5 frame-size=20 ! rtspclientsink location=rtsp://127.0.0.1:8554/mystream
 ```
 
-### 2.1 Consumer
+### 2.2 Consumer
 
 ```bash
 gst-launch-1.0 rtspsrc location=rtsp://127.0.0.1:8554/mystream latency=0 ! rtpjitterbuffer latency=400 drop-on-latency=true ! queue max-size-buffers=200 ! application/x-rtp,media=audio,encoding-name=OPUS ! rtpopusdepay ! opusdec ! autoaudiosink sync=true
@@ -74,7 +74,7 @@ gst-launch-1.0 rtspsrc location=rtsp://127.0.0.1:8554/mystream latency=0 ! rtpji
 ./whip-client -u http://127.0.0.1:8889/stream/whip -A "filesrc location=/home/lamhung/Downloads/du_cho_tan_the.mp3 ! decodebin ! audioconvert ! audioresample ! audio/x-raw,format=S16LE,rate=16000,channels=1 ! opusenc audio-type=voice bandwidth=wideband bitrate=16000 bitrate-type=constrained-vbr complexity=5 frame-size=20 ! rtpopuspay " -V "" -n -b 0
 ```
 
-### 3.1 Consumer
+### 3.2 Consumer
 
 ```bash
 ./whep-client -u http://127.0.0.1:8889/stream/whep -A "application/x-rtp,media=audio,encoding-name=opus,clock-rate=48000,encoding-params=(string)2,payload=111 " -n -b 200

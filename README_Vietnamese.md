@@ -26,7 +26,7 @@ sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgst
 ```
 Với các thư viện trên thì có thể chạy giao thức RTSP
 - Đối với giao thức Whip và Whep (WebRTC) thì cần biên dịch thêm [simple-whip-clien](https://github.com/meetecho/simple-whip-client.git) và [simple-whep-client](https://github.com/meetecho/simple-whep-client.git). Bạn có thể lấy sẵn file thực thi [tại đây](./Whip_Whep_application)
-### 1.3 Đánh giá
+### 1.4 Đánh giá
 - Độ trễ media từ producer đến consumer dùng giao thức RTSP ~ 800ms còn dùng giao thức Whip và Whep (WebRTC) ~ 550ms
 - Các câu lệnh cho producer và consumer bên dưới được tối ưu cho thiết bị IoT stream voice audio, bạn có thể thay đổi câu lệnh phù hợp với nhu cầu sử dụng với tài liệu tham khảo [elements of pipeline gstreamer](https://gstreamer.freedesktop.org/documentation/plugins_doc.html#)
 ## 2. Producer và Consumer dùng giao thức RTSP
@@ -44,7 +44,7 @@ gst-launch-1.0 filesrc location=/home/lamhung/Downloads/mat_ket_noi.mp3 ! decode
 gst-launch-1.0 alsasrc ! audioconvert ! audioresample ! audio/x-raw,format=S16LE,rate=16000,channels=1 ! opusenc audio-type=voice bandwidth=wideband bitrate=16000 bitrate-type=constrained-vbr complexity=5 frame-size=20 ! rtspclientsink location=rtsp://127.0.0.1:8554/mystream
 ```
 
-### 2.1 Consumer
+### 2.2 Consumer
 
 
 ```bash
@@ -58,7 +58,7 @@ gst-launch-1.0 rtspsrc location=rtsp://127.0.0.1:8554/mystream latency=0 ! rtpji
 ```bash
 ./whip-client -u http://127.0.0.1:8889/stream/whip -A "filesrc location=/home/lamhung/Downloads/du_cho_tan_the.mp3 ! decodebin ! audioconvert ! audioresample ! audio/x-raw,format=S16LE,rate=16000,channels=1 ! opusenc audio-type=voice bandwidth=wideband bitrate=16000 bitrate-type=constrained-vbr complexity=5 frame-size=20 ! rtpopuspay " -V "" -n -b 0
 ```
-### 3.1 Consumer
+### 3.2 Consumer
 ```bash
 ./whep-client -u http://127.0.0.1:8889/stream/whep -A "application/x-rtp,media=audio,encoding-name=opus,clock-rate=48000,encoding-params=(string)2,payload=111 " -n -b 200
 ```
