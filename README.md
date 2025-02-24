@@ -13,10 +13,10 @@ tar -xf mediamtx_v1.11.3_linux_amd64.tar.gz
 ### 1.2 Information about the Mediamtx server
 
 - You can adjust the server's configuration in the `mediamtx.yml` file.
-- Mediamtx defines streams through mount points.
-  Example: `rtsp://127.0.0.1:8554/mystream`  --> mount point: `mystream`
-           `http://127.0.0.1:8889/stream/whip` --> mount point: `stream`
-           `http://127.0.0.1:8889/stream/whep` --> mount point: `stream`
+- Mediamtx defines streams through mount points.  
+  Example: `rtsp://127.0.0.1:8554/mystream`  --> mount point: `mystream`  
+           `http://127.0.0.1:8889/stream/whip` --> mount point: `stream`  
+           `http://127.0.0.1:8889/stream/whep` --> mount point: `stream`  
 
 - Each mount point will accept 1 producer stream and multiple consumer streams simultaneously.
 - It is recommended to have the producer stream send to the server before consumers start receiving.
