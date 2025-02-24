@@ -10,9 +10,9 @@ tar -xf mediamtx_v1.11.3_linux_amd64.tar.gz
 ### 1.2 Thông tin về Mediamtx server
 - Bạn có thể chỉnh cấu hình của server trong file mediamtx.yml  
 - Mediamtx định nghĩa các luồn qua mount point  
-  VD: `rtsp://127.0.0.1:8554/mystream`  --> mount point: `mystream`
-           `http://127.0.0.1:8889/stream/whip` --> mount point: `stream`
-           `http://127.0.0.1:8889/stream/whep` --> mount point: `stream`
+  VD: `rtsp://127.0.0.1:8554/mystream`  --> mount point: `mystream`  
+           `http://127.0.0.1:8889/stream/whip` --> mount point: `stream`  
+           `http://127.0.0.1:8889/stream/whep` --> mount point: `stream`  
 
 - Mỗi mount point sẽ tiếp nhận 1 luồng producer gửi và nhiều luồng consumer nhận cùng một lúc
 - Nên để luồng producer gửi lên server trước khi cosumer nhận luồng 
